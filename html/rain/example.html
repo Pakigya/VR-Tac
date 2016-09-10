@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame Particle System Component Example</title>
+    <meta name="description" content="Hello, World!">
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/aframe-particle-system-component.min.js"></script>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCD_4hh1muBJhkUFu_3uw3Q4O0ucw342nY",
+    authDomain: "vr-tic-tac-toe.firebaseapp.com",
+    databaseURL: "https://vr-tic-tac-toe.firebaseio.com",
+    storageBucket: "",
+  };
+  firebase.initializeApp(config);
+</script>
+    
+    
+
+
+    <script>
+        function showcross()
+        {
+          document.getElementById('cro').setAttribute('visible', 'true')
+        }
+    </script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets>
+<!--        <img id= "example" src= "images/Bundeena-pier-360-panorama-NSW-Australia.jpg">-->
+        <img id= "example" src= "images/night.jpg">
+        <img id= "board" src = "images/board.png">
+        <img id= "cross" src = "images/cross.png">
+        <img id= "circle" src = "images/circle.png">
+    </a-assets>
+
+      <a-entity position="0 2.25 -15" particle-system="preset: rain"></a-entity>
+
+      <a-image src = "#board" position = "0 1.5 -2" scale = "2.5 2.5 2.5" onclick = "showcross()">
+        
+      </a-image>
+      <!--
+          **** X ---- -0.8 , 0 , 0.7  
+          ****y ------ 2.4 1.5 0.75
+          ****
+
+     
+      <a-image id = "cro" src = "#cross" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "false"></a-image>
+       -->
+       <!-- Row 1 -->
+      <a-image id = "cro" src = "#cross" position = "-0.8 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0.7 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+
+
+       <!-- Row 2 -->
+      <a-image id = "cro" src = "#cross" position = "-0.8 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0.7 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+
+       <!-- Row 3 -->
+      <a-image id = "cro" src = "#cross" position = "-0.8 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "cro" src = "#cross" position = "0.7 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+
+      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <!--<a-sky color="#000000"></a-sky>-->
+      <a-sky src = "#example"> </a-sky>
+
+      <a-camera position="0 1.8 1.5" wasd-controls= "acceleration: 500 ; enabled: true">
+          <a-entity cursor="fuse: true; maxDistance: 30; timeout: 5000"
+            scale = "0.01 0.01 0.01"
+            position="0 0 -1"
+            geometry="primitive: ring"
+            material="color: white; shader: flat">
+        
+        </a-entity>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
