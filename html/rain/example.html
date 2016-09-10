@@ -229,6 +229,10 @@ document.getElementById("play").setAttribute('src', '#win2');
         <img id ="name3" src= "images/name3.png">
         <img id ="name4" src= "images/name4.png">
 
+
+        <img id ="back" src= "images/back.png">
+        <img id ="reset" src= "images/reset.png">
+
     
 
     </a-assets>
@@ -278,6 +282,11 @@ document.getElementById("play").setAttribute('src', '#win2');
 
       <a-image id = "play" src = "#play1" position = "0 0 -1.8" scale = "0.8 0.8 0.8 " visible = "true" rotation = "-45 0 0" width="4" height="1.2"></a-image>
 
+       <a-image src= "#back" position= "-1 1.6 0" scale= "0.1 0.1 0.1" rotation = "0 75 0" width = 6em height = 3em onclick="showscene1()">
+        </a-image>
+       <a-image src= "#reset" position= "1 1.6 0" scale= "0.1 0.1 0.1" rotation = "0 -75 0" width = 6em height = 3em onclick="showscene1()">
+        </a-image>
+
 
 <!--
       <a-image id = "a1" src = "#cross" position = "-0.8 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
@@ -304,7 +313,7 @@ document.getElementById("play").setAttribute('src', '#win2');
       <a-camera position="0 1.8 1.5" wasd-controls= "acceleration: 500 ; enabled: true">
           <a-entity cursor="fuse: true; maxDistance: 30; timeout: 500"
             scale = "0.01 0.01 0.01"
-            position="0 0 -1"
+            position="0 0 -.5"
             geometry="primitive: ring"
             material="color: white; shader: flat">
         
