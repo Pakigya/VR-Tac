@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>VR Tic Tac Toe</title>
+    <title>VR Tac</title>
     <meta name="description" content="Hello, World!">
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
     <script src="https://rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/aframe-particle-system-component.min.js"></script>
@@ -13,9 +13,34 @@
 var points = ["_","_","_","_","_","_","_","_","_",];
 var mapp=    [0,0,0,0,0,0,0,0,0]
 var play=0;
+
+
+
+ function sleepFor( sleepDuration ){
+    var now = new Date().getTime();
+
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ 
+      console.log();
+    } 
+}
+
 function reset(){
+
+
  points = ["_","_","_","_","_","_","_","_","_",];
  mapp=    [0,0,0,0,0,0,0,0,0]
+
+ sleepFor(5000);
+ document.getElementById("a1").setAttribute('src', '#f');
+ document.getElementById("a2").setAttribute('src', '#f');
+ document.getElementById("a3").setAttribute('src', '#f');
+ document.getElementById("b1").setAttribute('src', '#f');
+ document.getElementById("b2").setAttribute('src', '#f');
+ document.getElementById("b3").setAttribute('src', '#f');
+ document.getElementById("c1").setAttribute('src', '#f');
+ document.getElementById("c2").setAttribute('src', '#f');
+ document.getElementById("c3").setAttribute('src', '#f');
+
  play=0;
  document.getElementById("a1").value=0;
 document.getElementById("a2").value=0;
@@ -30,6 +55,43 @@ document.getElementById("c3").value=0;
 }
 
 
+function showscene1()
+{
+  document.getElementById('scene1').setAttribute('visible', 'true');
+  document.getElementById('scene2').setAttribute('visible', 'false');
+}
+function showscene2()
+{
+  document.getElementById('scene1').setAttribute('visible', 'false');
+  document.getElementById('scene2').setAttribute('visible', 'true');
+}
+
+
+
+
+function showname1()
+{
+  document.getElementById("description").setAttribute('src','#name1');
+  document.getElementById("description").setAttribute('visible', 'true');
+}
+function showname2()
+{
+  document.getElementById("description").setAttribute('src','#name2');
+  document.getElementById("description").setAttribute('visible', 'true');
+}
+function showname3()
+{
+  document.getElementById("description").setAttribute('src','#name3');
+  document.getElementById("description").setAttribute('visible', 'true');
+}
+function showname4()
+{
+  document.getElementById("description").setAttribute('src','#name4');
+  document.getElementById("description").setAttribute('visible', 'true');
+}
+
+
+
 function showcircle()
 {
   document.getElementById("a1").setAttribute('src', '#circle') ;
@@ -38,17 +100,18 @@ function myFunction() {
 
 reset();
 
- document.getElementById("play").innerHTML =" player 1 move";
+  document.getElementById("play").setAttribute('src', '#play1');
+ //document.getElementById("play").innerHTML =" player 1 move";
 
- document.getElementById("a1").innerHTML =     points[0]+" |";
- document.getElementById("a2").innerHTML =     points[1]+" |";
- document.getElementById("a3").innerHTML =     points[2]+" |";
- document.getElementById("b1").innerHTML =     points[3]+" |";
- document.getElementById("b2").innerHTML =     points[4]+" |";
- document.getElementById("b3").innerHTML =     points[5]+" |";
- document.getElementById("c1").innerHTML =     points[6]+" |";
- document.getElementById("c2").innerHTML =     points[7]+" |";
- document.getElementById("c3").innerHTML =     points[8]+" |";
+ document.getElementById("a1").setAttribute('src', '#f');
+ document.getElementById("a2").setAttribute('src', '#f');
+ document.getElementById("a3").setAttribute('src', '#f');
+ document.getElementById("b1").setAttribute('src', '#f');
+ document.getElementById("b2").setAttribute('src', '#f');
+ document.getElementById("b3").setAttribute('src', '#f');
+ document.getElementById("c1").setAttribute('src', '#f');
+ document.getElementById("c2").setAttribute('src', '#f');
+ document.getElementById("c3").setAttribute('src', '#f');
 
 } 
 function myFunction2(id) {
@@ -138,7 +201,9 @@ document.getElementById("play").setAttribute('src', '#win2');
         }
     </script>
   </head>
+  
   <body>
+
     <a-scene>
     <a-assets>
 <!--        <img id= "example" src= "images/Bundeena-pier-360-panorama-NSW-Australia.jpg">-->
@@ -151,11 +216,39 @@ document.getElementById("play").setAttribute('src', '#win2');
         <img id= "play2" src = "images/play2.png">
         <img id= "win1" src = "images/win1.png">
         <img id= "win2" src = "images/win2.png">
-    </a-assets>
+    
 
+
+        <img id= "guy1" src = "images/guy1.png">
+        <img id= "guy2" src = "images/guy2.png">
+        <img id= "guy3" src = "images/guy3.png">
+        <img id= "girl1" src = "images/girl1.png">
+
+        <img id ="name1" src= "images/name1.png">
+        <img id ="name2" src= "images/name2.png">
+        <img id ="name3" src= "images/name3.png">
+        <img id ="name4" src= "images/name4.png">
+
+    
+
+    </a-assets>
+<a-entity id = "scene1" visible = "true"> 
+           <a-image id = "guy1" src = "#guy1" position = "1 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick = "showname1()">
+           </a-image>
+           <a-image id = "guy1" src = "#guy2" position = "0 2.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="showname2()"></a-image>
+           <a-image id = "guy1" src = "#guy3" position = "0 0.8 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="showname3()"></a-image>
+           <a-image id = "guy1" src = "#girl1" position = "-1 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="showname4()"></a-image>
+
+
+          <a-image id = "description" src = "#f" position = "0 1.6 -1.8" scale = "0.8 0.8 0.8 " visible = "false" onclick="showscene2()"></a-image>
+
+
+</a-entity>
+
+<a-entity id = "scene2" visible = "false"> 
       <a-entity position="0 2.25 -15" particle-system="preset: rain"></a-entity>
 
-      <a-image src = "#board" position = "0 1.5 -2" scale = "2.5 2.5 2.5" onclick = "showcross()">
+      <a-image src = "#board" position = "0 1.5 -2" scale = "2.5 2.5 2.5">
         
       </a-image>
       <!--
@@ -203,6 +296,9 @@ document.getElementById("play").setAttribute('src', '#win2');
 --><!--
       <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>-->
       <!--<a-sky color="#000000"></a-sky>-->
+</a-entity>
+
+
       <a-sky src = "#example"> </a-sky>
 
       <a-camera position="0 1.8 1.5" wasd-controls= "acceleration: 500 ; enabled: true">
