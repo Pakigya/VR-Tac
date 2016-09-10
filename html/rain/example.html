@@ -59,11 +59,13 @@ function showscene1()
 {
   document.getElementById('scene1').setAttribute('visible', 'true');
   document.getElementById('scene2').setAttribute('visible', 'false');
+  myFunction();
 }
 function showscene2()
 {
   document.getElementById('scene1').setAttribute('visible', 'false');
   document.getElementById('scene2').setAttribute('visible', 'true');
+  myFunction();
 }
 
 
@@ -113,7 +115,8 @@ reset();
  document.getElementById("c2").setAttribute('src', '#f');
  document.getElementById("c3").setAttribute('src', '#f');
 
-} 
+}
+
 function myFunction2(id) {
 var t=document.getElementById(id).value;
      if (t==1){}
