@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+var points = ["_","_","_","_","_","_","_","_","_",];
+var mapp=    [0,0,0,0,0,0,0,0,0]
+var play=0;
+function reset(){
+ points = ["_","_","_","_","_","_","_","_","_",];
+ mapp=    [0,0,0,0,0,0,0,0,0]
+ play=0;
+ document.getElementById("a1").value=0;
+document.getElementById("a2").value=0;
+document.getElementById("a3").value=0;
+document.getElementById("b1").value=0;
+document.getElementById("b2").value=0;
+document.getElementById("b3").value=0;
+document.getElementById("c1").value=0;
+document.getElementById("c2").value=0;
+document.getElementById("c3").value=0;
+
+}
+function myFunction() {
+
+reset();
+
+ document.getElementById("play").innerHTML =" player 1 move";
+
+ document.getElementById("a1").innerHTML =     points[0]+" |";
+ document.getElementById("a2").innerHTML =     points[1]+" |";
+ document.getElementById("a3").innerHTML =     points[2]+" |";
+ document.getElementById("b1").innerHTML =     points[3]+" |";
+ document.getElementById("b2").innerHTML =     points[4]+" |";
+ document.getElementById("b3").innerHTML =     points[5]+" |";
+ document.getElementById("c1").innerHTML =     points[6]+" |";
+ document.getElementById("c2").innerHTML =     points[7]+" |";
+ document.getElementById("c3").innerHTML =     points[8]+" |";
+
+} 
+function myFunction2(id) {
+var t=document.getElementById(id).value;
+     if (t==1){}
+else{
+     document.getElementById(id).value=1;
+     
+
+if(play==1){
+       document.getElementById(id).innerHTML =    "x |";
+       if(id=="a1"){points[0]=10;}
+       if(id=="a2"){points[1]=10;}
+  if(id=="a3"){points[2]=10;}
+  if(id=="b1"){points[3]=10;}
+  if(id=="b2"){points[4]=10;}
+  if(id=="b3"){points[5]=10;}
+  if(id=="c1"){points[6]=10;}
+  if(id=="c2"){points[7]=10;}
+  if(id=="c3"){points[8]=10;}
+}
+  else{
+         document.getElementById(id).innerHTML =    "o |"; 
+if(id=="a1"){points[0]=10;}
+       if(id=="a2"){points[1]=1;}
+  if(id=="a3"){points[2]=1;}
+  if(id=="b1"){points[3]=1;}
+  if(id=="b2"){points[4]=1;}
+  if(id=="b3"){points[5]=1;}
+  if(id=="c1"){points[6]=1;}
+  if(id=="c2"){points[7]=1;}
+  if(id=="c3"){points[8]=1;}
+}
+   changePlay();
+   isWin();
+}
+}
+function changePlay(){
+     if(play==0){
+        play=1;
+document.getElementById("play").innerHTML =" player 2 move";
+}
+else {play=0;
+document.getElementById("play").innerHTML =" player 1 move";
+}
+}
+function isWin(){
+   if(points[0]+points[1]+points[2]==3
+    || points[3]+points[4]+points[5]==3
+    || points[6]+points[7]+points[8]==3
+    || points[2]+points[4]+points[6]==3
+    || points[0]+points[4]+points[8]==3
+    
+    || points[0]+points[3]+points[6]==3
+    || points[1]+points[4]+points[7]==3
+    || points[2]+points[5]+points[8]==3
+   )
+   alert("player 1 is winner"); 
+    
+   if(points[0]+points[1]+points[2]==30
+    || points[3]+points[4]+points[5]==30
+    || points[6]+points[7]+points[8]==30
+    || points[2]+points[4]+points[6]==30
+    || points[0]+points[4]+points[8]==30
+    
+    || points[0]+points[3]+points[6]==30
+    || points[1]+points[4]+points[7]==30
+    || points[2]+points[5]+points[8]==30
+   )
+   alert("player 2 is winner"); 
+
+
+
+}
+</script>
+</head>
+
+<body>
+
+<h1>My Web Page</h1>
+
+
+<button type="button" onclick="myFunction()" value="dd">Try i</button>
+<p id="play" >  </p>
+<table>
+  <tr>
+    <th id="a1" onClick="myFunction2(this.id);" value="22f"></th>
+    <th id="a2" onclick="myFunction2(this.id);"></th>
+    <th id="a3" onclick="myFunction2(this.id);"></th>
+  </tr>
+  <tr>
+    <th id="b1" onclick="myFunction2(this.id);"></th>
+    <th id="b2" onclick="myFunction2(this.id);"></th>
+    <th id="b3" onclick="myFunction2(this.id);"></th>
+  </tr>
+  <tr>
+    <th id="c1" onclick="myFunction2(this.id);"></th>
+    <th id="c2" onclick="myFunction2(this.id);"></th>
+    <th id="c3" onclick="myFunction2(this.id);"></th>
+  </tr>
+</table>
+
+
+
+</body>
+</html>
+
