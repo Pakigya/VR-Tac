@@ -2,30 +2,136 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>A-Frame Particle System Component Example</title>
+    <title>VR Tic Tac Toe</title>
     <meta name="description" content="Hello, World!">
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
     <script src="https://rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
-
-
-<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCD_4hh1muBJhkUFu_3uw3Q4O0ucw342nY",
-    authDomain: "vr-tic-tac-toe.firebaseapp.com",
-    databaseURL: "https://vr-tic-tac-toe.firebaseio.com",
-    storageBucket: "",
-  };
-  firebase.initializeApp(config);
+var points = ["_","_","_","_","_","_","_","_","_",];
+var mapp=    [0,0,0,0,0,0,0,0,0]
+var play=0;
+function reset(){
+ points = ["_","_","_","_","_","_","_","_","_",];
+ mapp=    [0,0,0,0,0,0,0,0,0]
+ play=0;
+ document.getElementById("a1").value=0;
+document.getElementById("a2").value=0;
+document.getElementById("a3").value=0;
+document.getElementById("b1").value=0;
+document.getElementById("b2").value=0;
+document.getElementById("b3").value=0;
+document.getElementById("c1").value=0;
+document.getElementById("c2").value=0;
+document.getElementById("c3").value=0;
+
+}
+
+
+function showcircle()
+{
+  document.getElementById("a1").setAttribute('src', '#circle') ;
+}
+function myFunction() {
+
+reset();
+
+ document.getElementById("play").innerHTML =" player 1 move";
+
+ document.getElementById("a1").innerHTML =     points[0]+" |";
+ document.getElementById("a2").innerHTML =     points[1]+" |";
+ document.getElementById("a3").innerHTML =     points[2]+" |";
+ document.getElementById("b1").innerHTML =     points[3]+" |";
+ document.getElementById("b2").innerHTML =     points[4]+" |";
+ document.getElementById("b3").innerHTML =     points[5]+" |";
+ document.getElementById("c1").innerHTML =     points[6]+" |";
+ document.getElementById("c2").innerHTML =     points[7]+" |";
+ document.getElementById("c3").innerHTML =     points[8]+" |";
+
+} 
+function myFunction2(id) {
+var t=document.getElementById(id).value;
+     if (t==1){}
+else{
+     document.getElementById(id).value=1;
+      if(play==1){
+             //document.getElementById(id).innerHTML =    "x |";
+              document.getElementById(id).setAttribute('src', '#circle') ;
+             if(id=="a1"){points[0]=10;}
+             if(id=="a2"){points[1]=10;}
+        if(id=="a3"){points[2]=10;}
+        if(id=="b1"){points[3]=10;}
+        if(id=="b2"){points[4]=10;}
+        if(id=="b3"){points[5]=10;}
+        if(id=="c1"){points[6]=10;}
+        if(id=="c2"){points[7]=10;}
+        if(id=="c3"){points[8]=10;}
+      }
+        else{ 
+              document.getElementById(id).setAttribute('src', '#cross') ;
+      if(id=="a1"){points[0]=10;}
+             if(id=="a2"){points[1]=1;}
+        if(id=="a3"){points[2]=1;}
+        if(id=="b1"){points[3]=1;}
+        if(id=="b2"){points[4]=1;}
+        if(id=="b3"){points[5]=1;}
+        if(id=="c1"){points[6]=1;}
+        if(id=="c2"){points[7]=1;}
+        if(id=="c3"){points[8]=1;}
+      }
+   changePlay();
+   isWin();
+}
+}
+function changePlay(){
+     if(play==0){
+        play=1;
+document.getElementById("play").setAttribute('src', '#play2');
+
+}
+else {play=0;
+document.getElementById("play").setAttribute('src', '#play1');
+}
+}
+
+
+function isWin(){
+   if(points[0]+points[1]+points[2]==3
+    || points[3]+points[4]+points[5]==3
+    || points[6]+points[7]+points[8]==3
+    || points[2]+points[4]+points[6]==3
+    || points[0]+points[4]+points[8]==3
+    
+    || points[0]+points[3]+points[6]==3
+    || points[1]+points[4]+points[7]==3
+    || points[2]+points[5]+points[8]==3
+   )
+document.getElementById("play").setAttribute('src', '#win1');
+    
+   if(points[0]+points[1]+points[2]==30
+    || points[3]+points[4]+points[5]==30
+    || points[6]+points[7]+points[8]==30
+    || points[2]+points[4]+points[6]==30
+    || points[0]+points[4]+points[8]==30
+    
+    || points[0]+points[3]+points[6]==30
+    || points[1]+points[4]+points[7]==30
+    || points[2]+points[5]+points[8]==30
+   )
+document.getElementById("play").setAttribute('src', '#win2');
+
+
+
+}
 </script>
-    
-    
 
 
-    <script>
+
+
+
+<script>
         function showcross()
         {
           document.getElementById('cro').setAttribute('visible', 'true')
@@ -40,6 +146,11 @@
         <img id= "board" src = "images/board.png">
         <img id= "cross" src = "images/cross.png">
         <img id= "circle" src = "images/circle.png">
+        <img id= "f" src = "images/blank.png">
+        <img id= "play1" src = "images/play1.png">
+        <img id= "play2" src = "images/play2.png">
+        <img id= "win1" src = "images/win1.png">
+        <img id= "win2" src = "images/win2.png">
     </a-assets>
 
       <a-entity position="0 2.25 -15" particle-system="preset: rain"></a-entity>
@@ -55,28 +166,47 @@
      
       <a-image id = "cro" src = "#cross" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "false"></a-image>
        -->
+
        <!-- Row 1 -->
-      <a-image id = "cro" src = "#cross" position = "-0.8 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0.7 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "a1" src = "#f" position = "-0.8 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "a2" src = "#f" position = "0 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "a3" src = "#f" position = "0.7 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
 
 
        <!-- Row 2 -->
-      <a-image id = "cro" src = "#cross" position = "-0.8 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0.7 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "b1" src = "#f" position = "-0.8 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "b2" src = "#f" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "b3" src = "#f" position = "0.7 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
 
        <!-- Row 3 -->
-      <a-image id = "cro" src = "#cross" position = "-0.8 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
-      <a-image id = "cro" src = "#cross" position = "0.7 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true"></a-image>
+      <a-image id = "c1" src = "#f" position = "-0.8 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "c2" src = "#f" position = "0 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "c3" src = "#f" position = "0.7 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
 
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-image id = "play" src = "#play1" position = "0 0 -1.8" scale = "0.8 0.8 0.8 " visible = "true" rotation = "-45 0 0" width="4" height="1.2"></a-image>
+
+
+<!--
+      <a-image id = "a1" src = "#cross" position = "-0.8 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "a2" src = "#cross" position = "0 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "a3" src = "#cross" position = "0.7 2.4 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+
+
+      <a-image id = "b1" src = "#cross" position = "-0.8 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "b2" src = "#cross" position = "0 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "b3" src = "#cross" position = "0.7 1.5 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+
+      <a-image id = "c1" src = "#cross" position = "-0.8 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "c2" src = "#cross" position = "0 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+      <a-image id = "c3" src = "#cross" position = "0.7 0.75 -1.8" scale = "0.8 0.8 0.8 " visible = "true" onclick="myFunction2(this.id)"></a-image>
+
+--><!--
+      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>-->
       <!--<a-sky color="#000000"></a-sky>-->
       <a-sky src = "#example"> </a-sky>
 
       <a-camera position="0 1.8 1.5" wasd-controls= "acceleration: 500 ; enabled: true">
-          <a-entity cursor="fuse: true; maxDistance: 30; timeout: 5000"
+          <a-entity cursor="fuse: true; maxDistance: 30; timeout: 500"
             scale = "0.01 0.01 0.01"
             position="0 0 -1"
             geometry="primitive: ring"
